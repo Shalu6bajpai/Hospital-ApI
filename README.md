@@ -3,7 +3,7 @@
 
 An API to keep track of covid-19 patients and also generate report.This can be helpful of hospital people and govt to keep track of patients 
 ## Task:
-There can be 2 types of ​ Users
+There are 2 types of ​ Users
 - *Doctors* & *Patients*
 
 - Doctors can log in
@@ -22,9 +22,9 @@ There can be 2 types of ​ Users
 1. Clone the Package to your local System
 2. Go to required Directory
 3.Install node and mongoose if you not installed.
-3. Open Terminal and type `npm install`
-4. Type ` nodemon index.js` || `npm start`
-5. Open browser or postman app  and goto `localhost:8000`
+4. Open Terminal and type `npm install`
+5. Type ` nodemon index.js` 
+6. Open browser or postman app  and goto `localhost:8000`
 
 # Different API's in this project:
 1) **/doctors/register** → Registers a new Doctor to the hospital Database. Takes in mandatory field:--> **email**, **name** and **password**
