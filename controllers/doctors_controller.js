@@ -2,11 +2,11 @@ const Doct=require('../models/doctor');
 const jwt=require('jsonwebtoken');
 
 module.exports.register= function(req,res){
-
+      //Doctor registration with email
     Doct.findOne({email:req.body.email},function(err,user){
         if(err)
         {
-            console.log('Error Occured in registering doctor!');
+            console.log('Error Occured while registering doctor!');
             return;
         }
         if(!user)
@@ -15,7 +15,8 @@ module.exports.register= function(req,res){
             Doct.create(req.body,function(err,doct)
             {
                 if(err)
-                {console.log('err in creating user');return};
+                {console.log('Error in creating user');
+                 return};
                 
                 return res.json(200,{
                     message:'Registered successfully'
@@ -23,30 +24,30 @@ module.exports.register= function(req,res){
             })
         }
         else
+            //If doctor already present in database
         return res.json(200,{
-            message:'Already Registered! Go to Login',
-            // details:user
+            message:'Already Registered! 
         })
     })
 
 }
-
+//Doctor login 
 module.exports.login=async function(req,res){
 
     try{
         let doctor=await Doct.findOne({email:req.body.email});
-
+          //Checking the required fields 
         if(!doctor || doctor.password!=req.body.password)
         {
             return res.json(422,{
                 message:'Invalid credentials'
             })
         }
-
+          //Creating the token for patient registration
         return res.json(200,{
             message:'Sign in successsful',
             data:{
-            token:jwt.sign(doctor.toJSON(),'IAmAVeryComplicatedSecretKey',{expiresIn:'2h'})
+            token:jwt.sign(doctor.toJSON(),'Secret-Key',{expiresIn:'2h'})
             }
         })
     }
