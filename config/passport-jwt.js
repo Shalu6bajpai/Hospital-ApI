@@ -1,14 +1,14 @@
 const passport=require('passport');
-const JWTstrategy=require('passport-jwt').Strategy;
+const jwtStrategy=require('passport-jwt').Strategy;
 const ExtractJWT=require('passport-jwt').ExtractJwt;
 const Doctor=require('../models/doctor');
 
-let opts={
+let options={
     jwtFromRequest :ExtractJWT.fromAuthHeaderAsBearerToken(),
-    secretOrKey : 'IAmAVeryComplicatedSecretKey'
+    secretOrKey : 'SECRET-KEY'
 }
 
-passport.use(new JWTstrategy(opts,function(jwtPayload,done){
+passport.use(new jwtStrategy(options,function(jwtPayload,done){
     Doctor.findById(jwtPayload._id,(err,user)=>{
         if(err){console.log('Error in finding Doctor');return;}
 
