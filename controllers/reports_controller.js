@@ -5,7 +5,7 @@ const Report=require('../models/report');
       let report=await Report.find({ status:req.params.status }).populate('doctor').populate('patient');
 
       return res.status(200).json({
-        message:'All report of this status of all patients',
+        message:'All report of all patients',
         details:report
       })
     }
